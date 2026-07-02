@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<style>
+  /* ===== RESET & BASE ===== */
+  /* Remove default browser spacing that causes layout issues */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Makes width calculations predictable */
+  }
+
+  /* System font stack - loads instantly, no network request needed */
+  /* This is what top-performing pages use for speed */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                 Oxygen, Ubuntu, sans-serif;
+    color: #1a1a2e;
+    background: #ffffff;
+    line-height: 1.6;
+  }
+
+  /* ===== HERO SECTION ===== */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #ffffff;
+    padding: 40px 20px 50px; /* top right/left bottom */
+    min-height: 100vh; /* Full screen height on mobile */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    font-size: 28px; /* Mobile size */
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    color: #ffffff;
+  }
+
+  /* The orange word in headline for emphasis */
+  .hero h1 span {
+    color: #f4a261;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  /* ===== FORM ===== */
+  .form-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .form-card h2 {
+    font-size: 18px;
+    color: #1a1a2e;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e8e8e8;
+    border-radius: 10px;
+    font-size: 16px; /* 16px prevents iOS zoom on focus - very important */
+    color: #1a1a2e;
+    transition: border-color 0.2s;
+    background: #fafafa;
+  }
+
+  /* Highlight the active input field */
+  .form-group input:focus {
+    outline: none;
+    border-color: #e76f51;
+    background: #ffffff;
+  }
+
+  /* ===== CTA BUTTON ===== */
+  .cta-btn {
+    width: 100%;
+    background: #e76f51;
+    color: #ffffff;
+    border: none;
+    padding: 18px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .cta-btn:hover {
+    background: #cf5a3d;
+  }
+
+  /* Button press effect */
+  .cta-btn:active {
+    transform: scale(0.98);
+  }
+
+  .form-note {
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  /* ===== TRUST BAR ===== */
+  .trust-bar {
+    background: #f8f9fa;
+    padding: 40px 20px;
+  }
+
+  .trust-bar h3 {
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+  }
+
+  .trust-items {
+    display: flex;
+    flex-direction: column; /* Stack on mobile */
+    gap: 20px;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .trust-icon {
+    font-size: 32px;
+    flex-shrink: 0; /* Don't let icon shrink */
+  }
+
+  .trust-item strong {
+    display: block;
+    font-size: 20px;
+    color: #1a1a2e;
+    font-weight: 700;
+  }
+
+  .trust-item span {
+    font-size: 14px;
+    color: #666;
+  }
+
+  /* ===== SOCIAL PROOF ===== */
+  .reviews {
+    padding: 40px 20px;
+    background: #ffffff;
+  }
+
+  .reviews h3 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 28px;
+  }
+
+  .review-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .review-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 4px solid #e76f51;
+  }
+
+  .stars {
+    color: #f4a261;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .review-card p {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .reviewer {
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+  }
+
+  /* ===== THANK YOU STATE ===== */
+  /* Hidden by default, shown after form submit */
+  .thankyou-state {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .thankyou-state.active {
+    display: block;
+  }
+
+  .thankyou-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+
+  .thankyou-state h2 {
+    font-size: 22px;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+  }
+
+  .thankyou-state p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #1a1a2e;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 13px;
+  }
+
+  /* ===== DESKTOP ADJUSTMENTS ===== */
+  /* Screens wider than 768px get a different layout */
+  @media (min-width: 768px) {
+    .hero {
+      padding: 80px 40px;
+      min-height: auto;
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+    }
+
+    .trust-items {
+      flex-direction: row; /* Side by side on desktop */
+    }
+
+    .trust-item {
+      flex: 1;
+    }
+
+    .review-cards {
+      flex-direction: row;
+    }
+
+    .review-card {
+      flex: 1;
+    }
+
+    .trust-bar,
+    .reviews {
+      padding: 60px 40px;
+    }
+
+    .trust-bar h3,
+    .reviews h3 {
+      margin-bottom: 40px;
+    }
+  }
+</style>
+  <!-- Character encoding - always first -->
+  <meta charset="UTF-8">
+  
+  <!-- THIS IS THE MOST IMPORTANT TAG FOR MOBILE -->
+  <!-- Without this, mobile browsers zoom out and show desktop version -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Page title - shows in browser tab -->
+  <title>Book Orthopaedic Consultation | OrthoNow Bengaluru</title>
+  
+  <!-- Tells search engines what the page is about -->
+  <meta name="description" content="Book a free orthopaedic consultation at OrthoNow. 9 clinics across Bengaluru, Hyderabad & Chennai. Appointments within 48 hours.">
+  
+  <!-- CSS will go here next -->
+</head>
+<body>
+ <!-- ===== SECTION 1: HERO + FORM ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      
+      <!-- Left side: headline and subheadline -->
+      <div class="hero-text">
+        <span class="hero-badge">🏥 9 Clinics · Bengaluru · Hyderabad · Chennai</span>
+        
+        <h1>Still Ignoring That <span>Knee or Back Pain?</span> See a Specialist This Week.</h1>
+        
+        <p class="hero-sub">
+          Get an expert orthopaedic opinion — without the long wait. 
+          Book your consultation at OrthoNow and get a confirmed appointment within 48 hours.
+        </p>
+
+        <!-- Trust signals inline with hero on mobile -->
+        <div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:8px;">
+          <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.9); font-size:14px;">
+            ⭐ <span>4.8/5 from 2,400+ patients</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; color:rgba(255,255,255,0.9); font-size:14px;">
+            ✅ <span>No referral needed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side: the form -->
+      <div class="form-card">
+        
+        <!-- The form itself -->
+        <div id="form-view">
+          <h2>Book Your Free Consultation</h2>
+          
+          <!-- IMPORTANT: no action attribute - we handle submit with JS -->
+          <form id="consultation-form" novalidate>
+            
+            <div class="form-group">
+              <label for="patient-name">Your Name</label>
+              <input 
+                type="text" 
+                id="patient-name" 
+                name="name"
+                placeholder="e.g. Rahul Sharma" 
+                required
+                autocomplete="name"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="patient-phone">Phone Number</label>
+              <input 
+                type="tel" 
+                id="patient-phone" 
+                name="phone"
+                placeholder="e.g. 98765 43210" 
+                required
+                autocomplete="tel"
+                maxlength="10"
+              >
+            </div>
+
+            <button type="submit" class="cta-btn" id="submit-btn">
+              Book My Free Consultation →
+            </button>
+
+            <p class="form-note">🔒 Your information is private. We'll only call to confirm your appointment.</p>
+          </form>
+        </div>
+
+        <!-- Thank you state - hidden until form submit -->
+        <div class="thankyou-state" id="thankyou-view">
+          <div class="thankyou-icon">✅</div>
+          <h2>You're All Set!</h2>
+          <p>
+            Thank you! Our team will call you within 2 hours to confirm your appointment.<br><br>
+            <strong>OrthoNow — Expert Care, Close to You.</strong>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== SECTION 2: TRUST BAR ===== -->
+  <section class="trust-bar">
+    <h3>Why Patients Choose OrthoNow</h3>
+    <div class="trust-items">
+      
+      <div class="trust-item">
+        <div class="trust-icon">🏥</div>
+        <div>
+          <strong>9 Clinics</strong>
+          <span>Bengaluru, Hyderabad & Chennai — one near you</span>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-icon">👨‍⚕️</div>
+        <div>
+          <strong>15+ Specialists</strong>
+          <span>Board-certified orthopaedic surgeons & physiotherapists</span>
+        </div>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <div>
+          <strong>48-Hour Appointments</strong>
+          <span>Confirmed slot within 2 business days — no long waits</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== SECTION 3: SOCIAL PROOF ===== -->
+  <section class="reviews">
+    <h3>What Our Patients Say</h3>
+    <div class="review-cards">
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"I'd been putting off my knee pain for two years. Booked through this page on Monday, had my consultation by Wednesday. Dr. Mehta was thorough and didn't push unnecessary tests."</p>
+        <div class="reviewer">— Priya K., Software Engineer, Koramangala</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Back pain from sitting 9 hours a day at work. The Indiranagar clinic had me in within 48 hours. Finally got a diagnosis and a treatment plan that's actually working."</p>
+        <div class="reviewer">— Arun M., Product Manager, Bengaluru</div>
+      </div>
+
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"No drama, no unnecessary referrals, no waiting for weeks. The form took 30 seconds and someone called me the same day to confirm. That's how healthcare should work."</p>
+        <div class="reviewer">— Deepa R., Marketing Lead, Hyderabad</div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 OrthoNow Healthcare Pvt. Ltd. · All Rights Reserved</p>
+    <p style="margin-top:8px;">9 Clinics · Bengaluru · Hyderabad · Chennai · <a href="tel:+918000000000" style="color:rgba(255,255,255,0.7);">Call: 1800-XXX-XXXX</a></p>
+  </footer>
+
+  <!-- JS goes here next -->
+</body>
+<script>
+  // Initialize dataLayer array if GTM hasn't loaded yet
+  // This is standard practice - GTM itself does this, but we do it first
+  // so our push doesn't throw an error if GTM is slow to load
+  window.dataLayer = window.dataLayer || [];
+
+  // Grab the form and both views from the DOM
+  const form = document.getElementById('consultation-form');
+  const formView = document.getElementById('form-view');
+  const thankyouView = document.getElementById('thankyou-view');
+  const submitBtn = document.getElementById('submit-btn');
+
+  // Listen for form submit event
+  form.addEventListener('submit', function(e) {
+    
+    // Prevent the default browser behavior (page reload / GET request)
+    // Without this line, the page would refresh and you'd lose everything
+    e.preventDefault();
+
+    // Get the values the user typed in
+    const nameValue = document.getElementById('patient-name').value.trim();
+    const phoneValue = document.getElementById('patient-phone').value.trim();
+
+    // Basic validation - don't submit empty fields
+    if (!nameValue || !phoneValue) {
+      alert('Please fill in both your name and phone number.');
+      return; // Stop here, don't proceed
+    }
+
+    // Phone number validation - must be 10 digits
+    // The regex /^\d{10}$/ means: exactly 10 digits (0-9), nothing else
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phoneValue)) {
+      alert('Please enter a valid 10-digit phone number.');
+      return;
+    }
+
+    // =====================================================
+    // GTM DATALAYER PUSH - THIS IS WHAT THE INTERVIEW TESTS
+    // =====================================================
+    // This fires AFTER validation, BEFORE showing thank you
+    // Parameters: what data we send with this event
+    // NOTE: we send name because it's a first-party form, 
+    // but in a real production setup we'd hash this before 
+    // sending it anywhere - mention this in your Loom
+    window.dataLayer.push({
+      'event': 'consultation_form_submitted',
+      'form_name': 'orthonow_consultation_lp',
+      'lead_source': 'google_ads_consultation_lp',
+      'clinic_preference': 'bengaluru', // Could be dynamic from a dropdown
+      'submission_timestamp': new Date().toISOString()
+    });
+    // =====================================================
+
+    // Optional: log to console so you can SHOW THIS in your Loom
+    // This proves the push is firing - open Chrome DevTools > Console
+    // and you'll see this logged when you submit the form
+    console.log('✅ dataLayer push fired:', window.dataLayer);
+
+    // Show loading state on button so user knows something happened
+    submitBtn.textContent = 'Booking...';
+    submitBtn.disabled = true;
+
+    // Simulate a 800ms delay (like a real API call would have)
+    // In production this would be your actual form submission API call
+    setTimeout(function() {
+      
+      // Hide the form, show the thank you message
+      // This happens WITHOUT any page reload
+      formView.style.display = 'none';
+      thankyouView.classList.add('active');
+
+    }, 800);
+
+  });
+
+  // Phone input: only allow digits as user types
+  // This prevents users from typing letters in the phone field
+  document.getElementById('patient-phone').addEventListener('input', function() {
+    this.value = this.value.replace(/[^0-9]/g, '');
+  });
+
+</script>
+</html>
