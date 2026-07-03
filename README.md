@@ -174,4 +174,4 @@ python -m http.server 8000
 **Name:** Abhishek Kumar Shrivastav
 **Email:** 21mayabhishek@gmail.com
 **Phone:** +919801880205
-**Loom Walkthrough:** [paste Loom link here after recording]
+**Loom Walkthrough:** https://www.loom.com/share/fb5c6d01356f46a7b738345dd8314543
